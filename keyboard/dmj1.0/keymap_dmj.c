@@ -15,7 +15,7 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     // Layout select layer has been removed; The FN1 layer is a basket to get right, as it has to
     // return to one of the three default layers - but without knowing which layer was in effect.
     // Being only able to effect change in one layer in the core code is the problem here; we
-    // need to be able to not only set default layers (easy with ACTION_SET_DEFAULT_LAYER), but 
+    // need to be able to not only set default layers (easy with ACTION_DEFAULT_LAYER_SET), but 
     // sometimes we need to (for the caps layer) toggle that layer, and return to the previous
     // layer.
 
@@ -45,13 +45,23 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
 
     // All the "useful" Pok3r Function layer keys, momentary layer from the default layer,
     // selectable with FN0 (capslock). Note FN1 on "S" key to get to layout select layer.
+    // This FN1 is actually #defined out - it doesn't work and looks like it needs core
+    // support to make it work too.  More to come on this...
+#ifdef USE_FN1_FOR_TRANSITORY_LAYER_SELECT_LAYER
     [3] = KEYMAP_ISO(
         GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12 ,DEL ,  \
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,PGUP,UP,  PGDN,TRNS,TRNS,TRNS,       \
-/*      TRNS,TRNS,FN1 ,TRNS,TRNS,TRNS,HOME,LEFT,DOWN,RGHT,INS ,TRNS,TRNS,TRNS,  \ */
+        TRNS,TRNS,FN1 ,TRNS,TRNS,TRNS,HOME,LEFT,DOWN,RGHT,INS ,TRNS,TRNS,TRNS,  \
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,END ,TRNS,TRNS,TRNS,TRNS,TRNS,       \
+        TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
+#else
+    [3] = KEYMAP_ISO(
+        GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12 ,DEL ,  \
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,PGUP,UP,  PGDN,TRNS,TRNS,TRNS,       \
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,HOME,LEFT,DOWN,RGHT,INS ,TRNS,TRNS,TRNS,  \
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,END ,TRNS,TRNS,TRNS,TRNS,TRNS,       \
         TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
+#endif
 
     // Alternate keymap, with CapsLock intact, but with rarely used key as FN (APP).
     // Used as a toggle layer to restore capslock to it's "normal" position.
@@ -94,8 +104,11 @@ const action_t fn_actions[] PROGMEM = {
 #endif
 	// All non-function keys indicated here are as appears on the default (0) layer.
     [0] = ACTION_LAYER_MOMENTARY(3),     // FN0 overlays the Functionkey and arrows cluster
-    [1] = ACTION_LAYER_MOMENTARY(5),     // FN1 ("S" key ) selects layout layer.  Only way out of this
-                                         // is to press one of the layer 5 FN keys.
+#ifdef USE_FN1_FOR_TRANSITORY_LAYER_SELECT_LAYER
+    [1] = ACTION_LAYER_MOMENTARY(5),     // FN1 ("S" key ) selects layout layer.
+#else
+    [1] = { 0 },
+#endif
     // These layers are all accessed through the "layer select" layer.
     [2] = ACTION_LAYER_TOGGLE(4),        // Make capslock work as capslock; FN0 now on RGUI ("C" key).
     [3] = ACTION_DEFAULT_LAYER_SET(0),   // set QWERTY layer as default. ("Q" key)
