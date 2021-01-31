@@ -109,9 +109,4 @@ const action_t fn_actions[] PROGMEM = {
    [5] = ACTION_DEFAULT_LAYER_SET(2), // set dvorak layout ("D" key).
    // Tap FN6 = APP key; hold = rare key layer momentary action.
    [6] = ACTION_LAYER_TAP_KEY(6, KC_APP),
-#if 0
-   // Can't remember what these keys achieve.  Plus the FN7 and FN8 keys aren't defined in the maps.
-   [7] = ACTION_MODS_TAP_KEY(MOD_LSFT, ACTION_MODS_KEY(MOD_LSFT, KC_9)),
-   [8] = ACTION_MODS_TAP_KEY(MOD_RSFT, ACTION_MODS_KEY(MOD_LSFT, KC_0)),
-#endif
 };
