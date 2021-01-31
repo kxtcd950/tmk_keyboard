@@ -19,35 +19,44 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
    // sometimes we need to (for the caps layer) toggle that layer, and return to the previous
    // layer.
 
+   // clang-format off
    // Default layer on programming/factory reset.
-   [0] = KEYMAP_ISO(ESC, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, MINS, EQL, BSPC, TAB, Q, W, E, R, T, Y, U, I, O, P, LBRC, RBRC,
-                    FN0, A, S, D, F, G, H, J, K, L, SCLN, QUOT, NUHS, ENT, LSFT, NUBS, Z, X, C, V, B, N, M, COMM, DOT,
-                    SLSH, RSFT, LCTL, LGUI, LALT, SPC, RALT, RGUI, FN6, RCTL),
+   [0] = KEYMAP_ISO(ESC,  1,    2,    3,    4,    5,    6,    7,    8,    9,    0,    MINS, EQL,  BSPC,
+                    TAB,  Q,    W,    E,    R,    T,    Y,    U,    I,    O,    P,    LBRC, RBRC,
+                    FN0,  A,    S,    D,    F,    G,    H,    J,    K,    L,    SCLN, QUOT, NUHS, ENT,
+                    LSFT, NUBS, Z,    X,    C,    V,    B,    N,    M,    COMM, DOT,  SLSH, RSFT,
+                    LCTL, LGUI, LALT, SPC,                                      RALT, RGUI, FN6,  RCTL),
 
    // Colemak layer (default layer in waiting).
-   [1] = KEYMAP_ISO(ESC, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, MINS, EQL, BSPC, TAB, Q, W, F, P, G, J, L, U, Y, SCLN, LBRC,
-                    RBRC, FN0, A, R, S, T, D, H, N, E, I, O, QUOT, NUHS, ENT, LSFT, NUBS, Z, X, C, V, B, K, M, COMM,
-                    DOT, SLSH, RSFT, LCTL, LGUI, LALT, SPC, RALT, RGUI, FN6, RCTL),
+   [1] = KEYMAP_ISO(ESC,  1,    2,    3,    4,    5,    6,    7,    8,    9,    0,    MINS, EQL,  BSPC,
+                    TAB,  Q,    W,    F,    P,    G,    J,    L,    U,    Y,    SCLN, LBRC, RBRC,
+                    FN0,  A,    R,    S,    T,    D,    H,    N,    E,    I,    O,    QUOT, NUHS, ENT,
+                    LSFT, NUBS, Z,    X,    C,    V,    B,    K,    M,    COMM, DOT,  SLSH, RSFT,
+                    LCTL, LGUI, LALT, SPC,                                      RALT, RGUI, FN6,  RCTL),
 
    // UK Dvorak layer (default layer in waiting).
-   [2] = KEYMAP_ISO(ESC, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, MINS, EQL, BSPC, TAB, SLSH, COMM, DOT, P, Y, F, G, C, R, L, LBRC,
-                    RBRC, FN0, A, O, E, U, I, D, H, T, N, S, QUOT, NUHS, ENT, LSFT, NUBS, SCLN, Q, J, K, X, B, M, W, V,
-                    Z, RSFT, LCTL, LGUI, LALT, SPC, RALT, RGUI, FN6, RCTL),
+   [2] = KEYMAP_ISO(ESC,  1,    2,    3,    4,    5,    6,    7,    8,    9,    0,    MINS, EQL,  BSPC,
+                    TAB,  SLSH, COMM, DOT,  P,    Y,    F,    G,    C,    R,    L,    LBRC, RBRC,
+                    FN0,  A,    O,    E,    U,    I,    D,    H,    T,    N,    S,    QUOT, NUHS, ENT,
+                    LSFT, NUBS, SCLN, Q,    J,    K,    X,    B,    M,    W,    V,    Z,    RSFT,
+                    LCTL, LGUI, LALT, SPC,                                      RALT, RGUI, FN6,  RCTL),
 
 // All the "useful" Pok3r Function layer keys, momentary layer from the default layer,
 // selectable with FN0 (capslock). Note FN1 on "S" key to get to layout select layer.
 // This FN1 is actually #defined out - it doesn't work and looks like it needs core
 // support to make it work too.  More to come on this...
 #ifdef USE_FN1_FOR_TRANSITORY_LAYER_SELECT_LAYER
-   [3] = KEYMAP_ISO(GRV, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, DEL, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
-                    TRNS, PGUP, UP, PGDN, TRNS, TRNS, TRNS, TRNS, TRNS, FN1, TRNS, TRNS, TRNS, HOME, LEFT, DOWN, RGHT,
-                    INS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, END, TRNS, TRNS, TRNS, TRNS, TRNS,
-                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS),
+   [3] = KEYMAP_ISO(GRV,  F1,   F2,   F3,   F4,   F5,   F6,   F7,   F8,   F9,   F10,  F11,  F12,  DEL,
+                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGUP, UP,   PGDN, TRNS, TRNS, TRNS,
+                    TRNS, TRNS, FN1,  TRNS, TRNS, TRNS, HOME, LEFT, DOWN, RGHT, INS,  TRNS, F20,  TRNS,
+                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, END,  TRNS, TRNS, TRNS, TRNS, TRNS,
+                    TRNS, TRNS, TRNS, TRNS,                                     TRNS, TRNS, TRNS, TRNS),
 #else
-   [3] = KEYMAP_ISO(GRV, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, DEL, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
-                    TRNS, PGUP, UP, PGDN, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, HOME, LEFT, DOWN, RGHT,
-                    INS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, END, TRNS, TRNS, TRNS, TRNS, TRNS,
-                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS),
+   [3] = KEYMAP_ISO(GRV,  F1,   F2,   F3,   F4,   F5,   F6,   F7,   F8,   F9,   F10,  F11,  F12,  DEL,
+                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGUP, UP,   PGDN, TRNS, TRNS, TRNS,
+                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, HOME, LEFT, DOWN, RGHT, INS,  TRNS, TRNS, TRNS,
+                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, END,  TRNS, TRNS, TRNS, TRNS, TRNS,
+                    TRNS, TRNS, TRNS, TRNS,                                     TRNS, TRNS, TRNS, TRNS),
 #endif
 
    // Alternate keymap, with CapsLock intact, but with rarely used key as FN (APP).
@@ -55,29 +64,32 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
    // Relies on default keymaps for all other keys (and so can sit on any keymap)
    // Note that the FN key is placed on the right GUI key, which is no longer
    // a GUI (Menu) key - that's the price of CapsLock, folks.
-   [4] = KEYMAP_ISO(TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
-                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, CAPS, TRNS, TRNS, TRNS, TRNS,
-                    TRNS, HOME, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
-                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN0, TRNS, TRNS),
+   [4] = KEYMAP_ISO(TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
+                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
+                    CAPS, TRNS, TRNS, TRNS, TRNS, TRNS, HOME, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
+                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
+                    TRNS, TRNS, TRNS, TRNS,                                     TRNS, FN0,  TRNS, TRNS),
 
    // Layer select layer (transitory layer through which new default layouts are available).
    // FN2 = C (Select Capslock layer - DOES NOT MAKE THIS LAYER DEFAULT)
    // FN3 = Q (Select QWERTY layout)
    // FN4 = O (Select Colemak layout)
    // FN5 = D (Select Dvorak layout)
-   [5] = KEYMAP_ISO(TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN3, TRNS,
-                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN4, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN5, TRNS, TRNS, HOME,
-                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN2, TRNS, TRNS, TRNS, TRNS, TRNS,
-                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS),
+   [5] = KEYMAP_ISO(TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
+                    TRNS, FN3,  TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,  FN4, TRNS, TRNS, TRNS,
+                    TRNS, TRNS, TRNS, FN5,  TRNS, TRNS, HOME, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
+                    TRNS, TRNS, TRNS, TRNS,  FN2, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
+                    TRNS, TRNS, TRNS, TRNS,                                     TRNS, TRNS, TRNS, TRNS),
 
    // Momentary overlay using FN6 (right APP key) to get mouse & multimedia controls plus misc extras.
    // Most notably, keypad asterisk which as a (Windows) developer I cannot live without.
-   [6] = KEYMAP_ISO(TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PAST, TRNS, TRNS, TRNS, TRNS, FN2, TRNS, TRNS, MS_U,
-                    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PSCR, PAUS, TRNS, TRNS, MS_L, MS_D, MS_R, TRNS, TRNS,
-                    TRNS, TRNS, VOLU, TRNS, MPRV, MSTP, MNXT, TRNS, TRNS, TRNS, BTN1, BTN2, BTN3, TRNS, TRNS, VOLD,
-                    MUTE, NLCK, SLCK, MPLY, TRNS, TRNS, TRNS, TRNS, SLEP, TRNS, TRNS, TRNS, TRNS),
+   [6] = KEYMAP_ISO(GRV,  F13,  F14,  F15,  F16,  F17,  F18,  F19,  F20,  F21,  F22,  F23,  F24,  FN2,
+                    TRNS, TRNS, MS_U, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PSCR, PAUS, TRNS,
+                    TRNS, MS_L, MS_D, MS_R, TRNS, TRNS, TRNS, TRNS, VOLU, TRNS, MPRV, MSTP, MNXT, TRNS,
+                    TRNS, TRNS, BTN1, BTN2, BTN3, TRNS, TRNS, VOLD, MUTE, NLCK, SLCK, MPLY, TRNS,
+                    TRNS, TRNS, TRNS, SLEP,                                     TRNS, TRNS, TRNS, TRNS),
 };
-
+// clang-format on
 #ifdef KEYMAP_SECTION_ENABLE
 const action_t fn_actions[] __attribute__((section(".keymap.fn_actions"))) = {
 #else
